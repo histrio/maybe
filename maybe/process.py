@@ -9,7 +9,7 @@
 
 
 from os import readlink
-from os.path import normpath, join
+from os.path import join, normpath
 
 from ptrace.syscall.posix_arg import AT_FDCWD
 

@@ -1,29 +1,8 @@
-<table>
-  <tr>
-    <td><strong>Package</strong></td>
-    <td>
-      <a href="https://pypi.python.org/pypi/maybe">
-        <img src="https://img.shields.io/pypi/v/maybe.svg">
-      </a>
-      <img src="https://img.shields.io/badge/os-linux-blue.svg">
-      <img src="https://img.shields.io/pypi/pyversions/maybe.svg">
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Tests</strong></td>
-    <td>
-      <a href="https://travis-ci.org/p-e-w/maybe">
-        <img src="https://travis-ci.org/p-e-w/maybe.svg?branch=master">
-      </a>
-      <a href="https://coveralls.io/github/p-e-w/maybe?branch=master">
-        <img src="https://coveralls.io/repos/github/p-e-w/maybe/badge.svg?branch=master">
-      </a>
-      <a href="https://gemnasium.com/github.com/p-e-w/maybe">
-        <img src="https://gemnasium.com/badges/github.com/p-e-w/maybe.svg">
-      </a>
-    </td>
-  </tr>
-</table>
+[![Release](https://img.shields.io/github/v/release/histrio/maybe)](https://img.shields.io/github/v/release/histrio/maybe)
+[![Build status](https://img.shields.io/github/actions/workflow/status/histrio/maybe/main.yml?branch=main)](https://github.com/histrio/maybe/actions/workflows/main.yml?query=branch%3Amain)
+[![codecov](https://codecov.io/gh/histrio/maybe/branch/main/graph/badge.svg)](https://codecov.io/gh/histrio/maybe)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/histrio/maybe)](https://img.shields.io/github/commit-activity/m/histrio/maybe)
+[![License](https://img.shields.io/github/license/histrio/maybe)](https://img.shields.io/github/license/histrio/maybe)
 
 
 ---

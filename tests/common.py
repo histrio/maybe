@@ -1,10 +1,9 @@
 import os
-import sys
 import shlex
-from os import getcwd, chdir
+import sys
 from contextlib import contextmanager
-
-from six import PY2, StringIO
+from io import StringIO
+from os import chdir, getcwd
 
 from maybe.maybe import main as maybe_main
 
@@ -16,13 +15,6 @@ def maybe(arguments):
     assert sys.stdout == sys.stderr == string_io
     sys.stdout, sys.stderr = old_stdout, old_stderr
     return string_io.getvalue().rstrip("\n")
-
-
-def to_unicode(string):
-    if PY2:
-        return unicode(string, sys.getfilesystemencoding())  # noqa
-    else:
-        return string
 
 
 # Source: http://stackoverflow.com/a/431747
@@ -64,15 +56,13 @@ def tf(directory, command, output, operation, test):
         assert test(f)
         cmd = command.format(f=f_arg)
         # Test for expected output and provided test condition
-        assert maybe("-l -- " + cmd) == to_unicode(output.format(f=f))
+        assert maybe("-l -- " + cmd) == output.format(f=f)
         assert test(f)
         # Test for negation of the above if operation is explicitly allowed
         assert maybe(("-l -a %s -- " % operation) + cmd).startswith("maybe has not detected")
         assert not test(f)
 
     def t_name(name):
-        if PY2:
-            name = name.encode(sys.getfilesystemencoding())
         # Absolute path
         with remove(directory.join(name)) as f:
             t_file(f, str(f))

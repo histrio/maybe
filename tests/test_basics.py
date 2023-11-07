@@ -1,6 +1,6 @@
+from common import maybe
 from ptrace.syscall import SYSCALL_PROTOTYPES
 
-from common import maybe
 from maybe import SYSCALL_FILTERS
 
 
