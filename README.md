@@ -35,7 +35,7 @@ Currently, `maybe` is best thought of as an (alpha-quality) "what exactly will t
 
 ## Installation
 
-`maybe` runs on Linux :penguin: and requires [Python](https://www.python.org/) 2.7+/3.3+ :snake:. If you have the [pip](https://pip.pypa.io) package manager, all you need to do is run
+`maybe` runs on Linux :penguin: and requires [Python 3.8+](https://www.python.org/) :snake:. If you have the [pip](https://pip.pypa.io) package manager, all you need to do is run
 
 ```
 pip install maybe
