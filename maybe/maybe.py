@@ -8,8 +8,6 @@
 # (https://gnu.org/licenses/gpl.html)
 
 
-from __future__ import print_function, unicode_literals
-
 import subprocess
 import sys
 from argparse import ArgumentParser
