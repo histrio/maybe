@@ -8,7 +8,7 @@
 # (https://gnu.org/licenses/gpl.html)
 
 
-from os.path import dirname, basename
+from os.path import basename, dirname
 
 from maybe import T, register_filter
 

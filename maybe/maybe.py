@@ -8,32 +8,32 @@
 # (https://gnu.org/licenses/gpl.html)
 
 
-from __future__ import unicode_literals, print_function
+from __future__ import print_function, unicode_literals
 
-import sys
 import subprocess
-from imp import load_source
-from ast import literal_eval
+import sys
 from argparse import ArgumentParser
-from logging import getLogger, NullHandler
-from os.path import splitext, basename
+from ast import literal_eval
+from imp import load_source
+from logging import NullHandler, getLogger
+from os.path import basename, splitext
 
-from six import PY2
-from six.moves import input
-from ptrace.tools import locateProgram
-from ptrace.debugger import ProcessSignal, NewProcessEvent, ProcessExecution, ProcessExit
+from ptrace.debugger import (NewProcessEvent, ProcessExecution, ProcessExit,
+                             ProcessSignal)
 from ptrace.debugger.child import createChild
 from ptrace.debugger.debugger import PtraceDebugger
 from ptrace.func_call import FunctionCallOptions
-from ptrace.syscall import SYSCALL_REGISTER, RETURN_VALUE_REGISTER, DIRFD_ARGUMENTS
+from ptrace.syscall import RETURN_VALUE_REGISTER, SYSCALL_REGISTER
 from ptrace.syscall.posix_constants import SYSCALL_ARG_DICT
 from ptrace.syscall.syscall_argument import ARGUMENT_CALLBACK
+from ptrace.tools import locateProgram
 
 from . import SYSCALL_FILTERS, T, initialize_terminal
-from .process import Process
 # Filter modules are imported not to use them as symbols, but to execute their top-level code
-from .filters import (delete, move, change_permissions, change_owner,    # noqa
-                      create_directory, create_link, create_write_file)  # noqa
+from .filters import (change_owner, change_permissions,  # noqa
+                      create_directory, create_link, create_write_file, delete,
+                      move)
+from .process import Process
 
 
 def parse_argument(argument):
@@ -41,8 +41,6 @@ def parse_argument(argument):
     # for which literal_eval() acts as an inverse function
     # (see http://stackoverflow.com/a/24886425)
     argument = literal_eval(argument.createText())
-    if PY2 and isinstance(argument, str):
-        argument = unicode(argument, sys.getfilesystemencoding())  # noqa
     return argument
 
 
@@ -73,7 +71,7 @@ def get_operations(debugger, syscall_filters, verbose):
         except ProcessExecution as event:
             event.process.syscall()
             continue
-        except ProcessExit as event:
+        except ProcessExit:
             continue
 
         process = syscall_event.process
@@ -114,9 +112,6 @@ def get_operations(debugger, syscall_filters, verbose):
 
 
 def main(argv=sys.argv[1:]):
-    if PY2:
-        argv = [unicode(arg, sys.getfilesystemencoding()) for arg in argv]  # noqa
-
     # Insert positional argument separator, if not already present
     if "--" not in argv:
         for i, argument in enumerate(argv):
@@ -186,7 +181,7 @@ def main(argv=sys.argv[1:]):
                 return 1
         filter_scopes = args.deny
     else:
-        filter_scopes = SYSCALL_FILTERS.keys()
+        filter_scopes = set(SYSCALL_FILTERS.keys())
 
     syscall_filters = {}
 
@@ -199,7 +194,6 @@ def main(argv=sys.argv[1:]):
     getLogger().addHandler(NullHandler())
 
     # Prevent python-ptrace from decoding arguments to keep raw numerical values
-    DIRFD_ARGUMENTS.clear()
     SYSCALL_ARG_DICT.clear()
     ARGUMENT_CALLBACK.clear()
 

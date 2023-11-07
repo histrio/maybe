@@ -8,11 +8,10 @@
 # (https://gnu.org/licenses/gpl.html)
 
 
-from sys import _getframe
 from collections import OrderedDict
+from sys import _getframe
 
 from blessings import Terminal
-
 
 T = Terminal()
 

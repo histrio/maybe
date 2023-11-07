@@ -1,4 +1,4 @@
-from os import access, X_OK
+from os import X_OK, access
 
 from common import tf, umask
 

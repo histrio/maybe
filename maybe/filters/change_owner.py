@@ -8,8 +8,8 @@
 # (https://gnu.org/licenses/gpl.html)
 
 
-from pwd import getpwuid
 from grp import getgrgid
+from pwd import getpwuid
 
 from maybe import T, register_filter
 

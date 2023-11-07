@@ -8,12 +8,11 @@
 # (https://gnu.org/licenses/gpl.html)
 
 
+from os import O_APPEND, O_CREAT, O_RDWR, O_TRUNC, O_WRONLY
 from os.path import exists
-from os import O_WRONLY, O_RDWR, O_APPEND, O_CREAT, O_TRUNC
-from stat import S_IFCHR, S_IFBLK, S_IFIFO, S_IFSOCK
+from stat import S_IFBLK, S_IFCHR, S_IFIFO, S_IFSOCK
 
 from maybe import T, register_filter
-
 
 allowed_files = set(["/dev/null", "/dev/zero", "/dev/tty"])
 

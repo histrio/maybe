@@ -1,0 +1,107 @@
+[tool.poetry]
+name = "maybe"
+version = "0.5.0-pre1"
+authors = ["Philipp Emanuel Weidmann <pew@worldwidemann.com>", "Rinat Sabitov <rinat.sabitov@gmail.com>"]
+readme = "README.md"
+description = "See what a program does before deciding whether you really want it to happen."
+license = "GPLv3"
+repository = "https://github.com/histrio/maybe"
+keywords = ['command preview', 'system calls interception', 'file system operations simulation', 'dry run utility']
+documentation = "https://histrio.github.io/maybe/"
+
+classifiers=[
+    "Development Status :: 3 - Alpha",
+
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: System Administrators",
+
+    "Topic :: Utilities",
+
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+
+    "Operating System :: POSIX :: Linux",
+]
+
+packages = [{include = "maybe", from="."}]
+
+
+[tool.poetry.scripts]
+maybe = 'maybe.maybe:main'
+
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+python-ptrace = "^0.9.8"
+blessings = "^1.7"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-cov = "^4.0.0"
+#coverage = { extras = ["toml"], version = ">=7.2.5" }
+deptry = "^0.12.0"
+mypy = "^1.5.1"
+pre-commit = "^3.4.0"
+black = ">=23.3.0"
+commitizen = ">=3.2.1"
+pytest-clarity = ">=1.0.1"
+pytest-mock = ">=3.10.0"
+pytest-xdist = ">=3.2.1"
+ruff = ">=0.0.270"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.4.2"
+mkdocs-material = "^9.2.7"
+mkdocstrings = {extras = ["python"], version = "^0.23.0"}
+
+[tool.commitizen]  # https://commitizen-tools.github.io/commitizen/config/
+bump_message = "bump(release): v$current_version → v$new_version"
+tag_format = "v$version"
+update_changelog_on_bump = true
+version = "0.0.0"
+version_files = ["pyproject.toml:version"]
+
+[tool.black]
+line-length = 120
+target-version = ['py37']
+preview = true
+
+[tool.mypy]
+files = ["maybe"]
+#disallow_untyped_defs = "True"
+disallow_any_unimported = "True"
+no_implicit_optional = "True"
+#check_untyped_defs = "True"
+warn_return_any = "True"
+warn_unused_ignores = "True"
+show_error_codes = "True"
+ignore_missing_imports = "True"
+
+
+[tool.ruff]
+fix = true
+# ignore-init-module-imports = true
+line-length = 100
+# select = ["A", "ASYNC", "B", "C4", "C90", "D", "DTZ", "E", "F", "FLY", "I", "ISC", "N", "NPY", "PGH", "PIE", "PLC", "PLE", "PLR", "PLW", "PT", "RET", "RUF", "RSE", "SIM", "TID", "UP", "W", "YTT"]
+# ignore = ["E501", "PGH001", "PGH002", "PGH003", "RET504", "S101"]
+# unfixable = ["F401", "F841"]
+# src = ["src", "tests"]
+target-version = "py38"
+
+
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.coverage.report]
+skip_empty = true
+precision = 1
+show_missing = true
+skip_covered = true
+
+[tool.coverage.run]
+branch = true
+source = ["maybe"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
