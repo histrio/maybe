@@ -12,7 +12,6 @@ import subprocess
 import sys
 from argparse import ArgumentParser
 from ast import literal_eval
-from imp import load_source
 from logging import NullHandler, getLogger
 from os.path import basename, splitext
 
@@ -26,7 +25,7 @@ from ptrace.syscall.posix_constants import SYSCALL_ARG_DICT
 from ptrace.syscall.syscall_argument import ARGUMENT_CALLBACK
 from ptrace.tools import locateProgram
 
-from . import SYSCALL_FILTERS, T, initialize_terminal
+from . import SYSCALL_FILTERS, T, initialize_terminal, load_module_from_path
 # Filter modules are imported not to use them as symbols, but to execute their top-level code
 from .filters import (change_owner, change_permissions,  # noqa
                       create_directory, create_link, create_write_file, delete,
@@ -158,10 +157,7 @@ def main(argv=sys.argv[1:]):
         for plugin_path in args.plugin:
             try:
                 module_name = splitext(basename(plugin_path))[0]
-                # Note: imp.load_source is *long* deprecated and not even documented
-                # in Python 3 anymore, but it still seems to work and the "alternatives"
-                # (see http://stackoverflow.com/a/67692) are simply too insane to use
-                load_source(module_name, plugin_path)
+                load_module_from_path(module_name, plugin_path)
             except Exception as error:
                 print(T.red("Error loading %s: %s." % (T.bold(plugin_path) + T.red, error)))
                 return 1

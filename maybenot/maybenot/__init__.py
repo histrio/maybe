@@ -7,6 +7,8 @@
 # Released under the terms of the GNU General Public License, version 3
 # (https://gnu.org/licenses/gpl.html)
 
+import importlib.util
+import sys
 
 from collections import OrderedDict
 from sys import _getframe
@@ -14,6 +16,14 @@ from sys import _getframe
 from blessings import Terminal
 
 T = Terminal()
+
+
+def load_module_from_path(module_name, path_to_file):
+    spec = importlib.util.spec_from_file_location(module_name, path_to_file)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 def initialize_terminal(style_output):
