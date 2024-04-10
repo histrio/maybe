@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Forked project from https://github.com/p-e-w/maybe and initiated as `maybenot`.
+- Massive rename maybe -> maybenot
+- Get rid of deprecated imp methods
+- Added an initial changelog
 
 ## [0.4.0] - 2016-03-27 (Last update of the original project)
  - Filter mknod type calls (@sanketplus)

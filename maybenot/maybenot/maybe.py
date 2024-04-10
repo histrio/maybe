@@ -149,7 +149,7 @@ def main(argv=sys.argv[1:]):
     arg_parser.add_argument("-v", "--verbose", action="count",
                             help="if specified once, print every filtered syscall. " +
                                  "if specified twice, print every syscall, highlighting filtered syscalls")
-    arg_parser.add_argument("--version", action="version", version="%(prog)s 0.4.0")
+    arg_parser.add_argument("--version", action="version", version="%(prog)s 0.5.0")
     args = arg_parser.parse_args(argv)
 
     initialize_terminal(args.style_output)
