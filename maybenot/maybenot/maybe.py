@@ -1,6 +1,7 @@
-# maybe - see what a program does before deciding whether you really want it to happen
+# maybenot - see what a program does before deciding whether you really want it to happen
 #
 # Copyright (c) 2016-2017 Philipp Emanuel Weidmann <pew@worldwidemann.com>
+# Copyright (c) 2023 Rinat Sabitov <rinat.sabitov@gmail.com>
 #
 # Nemo vir est qui mundum non reddat meliorem.
 #
@@ -12,7 +13,6 @@ import subprocess
 import sys
 from argparse import ArgumentParser
 from ast import literal_eval
-from imp import load_source
 from logging import NullHandler, getLogger
 from os.path import basename, splitext
 
@@ -26,7 +26,7 @@ from ptrace.syscall.posix_constants import SYSCALL_ARG_DICT
 from ptrace.syscall.syscall_argument import ARGUMENT_CALLBACK
 from ptrace.tools import locateProgram
 
-from . import SYSCALL_FILTERS, T, initialize_terminal
+from . import SYSCALL_FILTERS, T, initialize_terminal, load_module_from_path
 # Filter modules are imported not to use them as symbols, but to execute their top-level code
 from .filters import (change_owner, change_permissions,  # noqa
                       create_directory, create_link, create_write_file, delete,
@@ -118,14 +118,14 @@ def main(argv=sys.argv[1:]):
                 break
 
     arg_parser = ArgumentParser(
-        prog="maybe",
+        prog="maybenot",
         usage="%(prog)s [options] command [argument ...]",
         description="Run a command without the ability to make changes to your system " +
                     "and list the changes it would have made.",
         epilog="For more information, to report issues or to contribute, " +
-               "visit https://github.com/p-e-w/maybe.",
+               "visit https://github.com/histrio/maybenot.",
     )
-    arg_parser.add_argument("command", nargs="+", help="the command to run under maybe's control")
+    arg_parser.add_argument("command", nargs="+", help="the command to run under maybenot's control")
     arg_group = arg_parser.add_mutually_exclusive_group()
     arg_group.add_argument("-a", "--allow", nargs="+", metavar="OPERATION",
                            help="allow the command to perform the specified operation(s). " +
@@ -158,10 +158,7 @@ def main(argv=sys.argv[1:]):
         for plugin_path in args.plugin:
             try:
                 module_name = splitext(basename(plugin_path))[0]
-                # Note: imp.load_source is *long* deprecated and not even documented
-                # in Python 3 anymore, but it still seems to work and the "alternatives"
-                # (see http://stackoverflow.com/a/67692) are simply too insane to use
-                load_source(module_name, plugin_path)
+                load_module_from_path(module_name, plugin_path)
             except Exception as error:
                 print(T.red("Error loading %s: %s." % (T.bold(plugin_path) + T.red, error)))
                 return 1
@@ -228,7 +225,7 @@ def main(argv=sys.argv[1:]):
     if operations:
         if not args.list_only:
             print("%s has prevented %s from performing %d file system operations:\n" %
-                  (T.bold("maybe"), T.bold(command), len(operations)))
+                  (T.bold("maybenot"), T.bold(command), len(operations)))
         for operation in operations:
             print(("" if args.list_only else "  ") + operation)
         if not args.list_only:
@@ -243,4 +240,4 @@ def main(argv=sys.argv[1:]):
                 subprocess.call(args.command)
     else:
         print("%s has not detected any file system operations from %s." %
-              (T.bold("maybe"), T.bold(command)))
+              (T.bold("maybenot"), T.bold(command)))

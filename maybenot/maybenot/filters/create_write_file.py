@@ -1,6 +1,7 @@
-# maybe - see what a program does before deciding whether you really want it to happen
+# maybenot - see what a program does before deciding whether you really want it to happen
 #
 # Copyright (c) 2016-2017 Philipp Emanuel Weidmann <pew@worldwidemann.com>
+# Copyright (c) 2023 Rinat Sabitov <rinat.sabitov@gmail.com>
 #
 # Nemo vir est qui mundum non reddat meliorem.
 #
@@ -12,7 +13,7 @@ from os import O_APPEND, O_CREAT, O_RDWR, O_TRUNC, O_WRONLY
 from os.path import exists
 from stat import S_IFBLK, S_IFCHR, S_IFIFO, S_IFSOCK
 
-from maybe import T, register_filter
+from maybenot import T, register_filter
 
 allowed_files = set(["/dev/null", "/dev/zero", "/dev/tty"])
 
