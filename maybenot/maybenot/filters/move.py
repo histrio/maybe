@@ -1,4 +1,4 @@
-# maybe - see what a program does before deciding whether you really want it to happen
+# maybenot - see what a program does before deciding whether you really want it to happen
 #
 # Copyright (c) 2016-2017 Philipp Emanuel Weidmann <pew@worldwidemann.com>
 #
@@ -10,7 +10,7 @@
 
 from os.path import basename, dirname
 
-from maybe import T, register_filter
+from maybenot import T, register_filter
 
 
 def filter_move(path_old, path_new):
