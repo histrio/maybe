@@ -67,7 +67,7 @@ target-version = ['py37']
 preview = true
 
 [tool.mypy]
-files = ["maybe"]
+files = ["maybenot"]
 #disallow_untyped_defs = "True"
 disallow_any_unimported = "True"
 no_implicit_optional = "True"
@@ -100,7 +100,7 @@ skip_covered = true
 
 [tool.coverage.run]
 branch = true
-source = ["maybe"]
+source = ["maybenot"]
 
 [build-system]
 requires = ["poetry-core"]
