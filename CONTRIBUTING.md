@@ -9,7 +9,7 @@ You can contribute in many ways:
 
 ### Report Bugs
 
-Report bugs at https://github.com/histrio/maybe/issues
+Report bugs at https://github.com/histrio/maybenot/issues
 
 If you are reporting a bug, please include:
 
@@ -36,7 +36,7 @@ and such.
 ### Submit Feedback
 
 The best way to send feedback is to file an issue at
-https://github.com/histrio/maybe/issues.
+https://github.com/histrio/maybenot/issues.
 
 If you are proposing a new feature:
 
@@ -47,17 +47,17 @@ If you are proposing a new feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `maybe` for local
+Ready to contribute? Here's how to set up `maybenot` for local
 development. Please note this documentation assumes you already have
 `poetry` and `Git` installed and ready to go.
 
-1. Fork the `maybe` repo on GitHub.
+1. Fork the `maybenot` repo on GitHub.
 
 2. Clone your fork locally:
 
 ```bash
         cd <directory_in_which_repo_should_be_created>
-        git clone git@github.com:YOUR_NAME/maybe.git
+        git clone git@github.com:YOUR_NAME/maybenot.git
 ```
 
 3. Now we need to install the environment. Navigate into the directory
