@@ -1,8 +1,9 @@
-[![Release](https://img.shields.io/github/v/release/histrio/maybenot)](https://img.shields.io/github/v/release/histrio/maybenot)
+![PyPI - Version](https://img.shields.io/pypi/v/maybenot)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/maybenot)
+![PyPI - License](https://img.shields.io/pypi/l/maybenot)
 [![Tests](https://github.com/histrio/maybenot/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/histrio/maybenot/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/histrio/maybenot/graph/badge.svg?token=X6ZMMZNN5T)](https://codecov.io/gh/histrio/maybenot)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/histrio/maybenot)](https://img.shields.io/github/commit-activity/m/histrio/maybenot)
-[![License](https://img.shields.io/github/license/histrio/maybenot)](https://img.shields.io/github/license/histrio/maybenot)
 
 
 ---
