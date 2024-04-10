@@ -5,7 +5,7 @@ from contextlib import contextmanager
 from io import StringIO
 from os import chdir, getcwd
 
-from maybe.maybe import main as maybe_main
+from maybenot.maybe import main as maybe_main
 
 
 def maybe(arguments):
@@ -59,7 +59,7 @@ def tf(directory, command, output, operation, test):
         assert maybe("-l -- " + cmd) == output.format(f=f)
         assert test(f)
         # Test for negation of the above if operation is explicitly allowed
-        assert maybe(("-l -a %s -- " % operation) + cmd).startswith("maybe has not detected")
+        assert maybe(("-l -a %s -- " % operation) + cmd).startswith("maybenot has not detected")
         assert not test(f)
 
     def t_name(name):

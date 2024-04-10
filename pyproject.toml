@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "maybe"
+name = "maybenot"
 version = "0.5.0-pre1"
 authors = ["Philipp Emanuel Weidmann <pew@worldwidemann.com>", "Rinat Sabitov <rinat.sabitov@gmail.com>"]
 readme = "README.md"
 description = "See what a program does before deciding whether you really want it to happen."
 license = "GPLv3"
-repository = "https://github.com/histrio/maybe"
+repository = "https://github.com/histrio/maybenot"
 keywords = ['command preview', 'system calls interception', 'file system operations simulation', 'dry run utility']
-documentation = "https://histrio.github.io/maybe/"
+documentation = "https://histrio.github.io/maybenot/"
 
 classifiers=[
     "Development Status :: 3 - Alpha",
@@ -22,11 +22,11 @@ classifiers=[
     "Operating System :: POSIX :: Linux",
 ]
 
-packages = [{include = "maybe", from="."}]
+packages = [{include = "maybenot", from="./maybenot"}]
 
 
 [tool.poetry.scripts]
-maybe = 'maybe.maybe:main'
+maybenot = 'maybenot.maybe:main'
 
 
 [tool.poetry.dependencies]

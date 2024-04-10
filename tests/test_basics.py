@@ -1,7 +1,7 @@
 from common import maybe
 from ptrace.syscall import SYSCALL_PROTOTYPES
 
-from maybe import SYSCALL_FILTERS
+from maybenot import SYSCALL_FILTERS
 
 
 def test_syscall_filters():
@@ -12,4 +12,4 @@ def test_syscall_filters():
 
 
 def test_no_operations():
-    assert maybe("true") == "maybe has not detected any file system operations from true."
+    assert maybe("true") == "maybenot has not detected any file system operations from true."

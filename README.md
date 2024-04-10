@@ -53,7 +53,7 @@ in its main directory to install the package in editable mode.
 ## Usage
 
 ```
-maybe [options] command [argument ...]
+maybenot [options] command [argument ...]
 ```
 
 ### Positional arguments
@@ -104,7 +104,7 @@ Here, `maybe`'s plugin API is used to implement an exotic type of access control
 ```python
 from os import O_WRONLY
 from os.path import isfile
-from maybe import T, register_filter
+from maybenot import T, register_filter
 
 def filter_open(path, flags):
     if path.startswith("/home/") and isfile(path) and not (flags & O_WRONLY):
@@ -125,7 +125,7 @@ register_filter("openat", lambda process, args:
 Indeed, the plugin works as expected:
 
 ```
-[user@localhost]$ maybe --plugin read_secret_file.py --deny read_secret_file -- bash
+[user@localhost]$ maybenot --plugin read_secret_file.py --deny read_secret_file -- bash
 $ echo "This is a normal file." > file_1
 $ echo "This is a SECRET file." > file_2
 $ cat file_1
